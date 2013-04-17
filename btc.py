@@ -40,12 +40,12 @@ def init():
         # Validate the API key.
         resp = get('https://coinbase.com/api/v1/users?api_key=%s' % api_key)
         if resp.status_code == 200:
-            f = open(expanduser('~/.btc'), 'wb')
+            f = open(CONFIG_FILE, 'wb')
             f.write(api_key)
             f.close()
 
             print '\nSuccessfully initialized `btc`!'
-            print 'Your API key is stored here:', expanduser('~/.btc'), '\n'
+            print 'Your API key is stored here:', CONFIG_FILE, '\n'
             print 'Run `btc` for usage information.'
             finished = True
         else:
