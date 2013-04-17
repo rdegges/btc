@@ -10,7 +10,7 @@ Usage:
   btc init
   btc test
   btc logs
-  btc view
+  btc rates
   btc buy <btc>
   btc sell <btc>
   btc transfer <btc> <address>
@@ -87,7 +87,7 @@ class BTC(object):
     def transfer(self):
         pass
 
-    def view(self):
+    def rates(self):
         """List current exchange rates."""
         bjson = self.make_get_request('prices/buy')
         sjson = self.make_get_request('prices/sell')
@@ -147,8 +147,8 @@ def main():
         btc.test()
     elif arguments['transfer']:
         btc.transfer()
-    elif arguments['view']:
-        btc.view()
+    elif arguments['rates']:
+        btc.rates()
 
 
 if __name__ == '__main__':
