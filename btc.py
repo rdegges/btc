@@ -106,8 +106,27 @@ class BTC(object):
         print 'Sell: 1 BTC for %s %s' % (sjson['amount'], sjson['currency'])
         print '======================'
 
-    def buy(self):
-        pass
+    def buy(self, amount):
+        """Purchase bitcoin."""
+        json = self.make_request('buys', method='POST', data={
+            'qty': amount,
+            'agree_btc_amount_varies': True,
+        })
+        print dumps(json, sort_keys=True, indent=2, separators=(',', ': '))
+
+        if not json['success']:
+            print 'There Were Error(s) Making Your Purchase'
+            print '========================================'
+            for error in json['errors']:
+                print '- %s' % '\n  '.join(wrap(error, 77))
+            print '========================================'
+            return
+
+        print 'Purchase Successful'
+        print '==================='
+        print dumps(json['transfer'], sort_keys=True, indent=2,
+                separators=(',', ': '))
+        print '==================='
 
 
 def init():
@@ -161,7 +180,7 @@ def main():
     elif arguments['rates']:
         btc.rates()
     elif arguments['buy']:
-        btc.buy()
+        btc.buy(float(arguments['<btc>']))
 
 
 if __name__ == '__main__':
