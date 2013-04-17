@@ -17,7 +17,8 @@ Usage:
   btc (-h | --help)             Show this screen.
   btc --version                 Show version.
 
-Written by Randall Degges <http://www.rdegges.com/>.
+Written by Randall Degges <http://www.rdegges.com/>. Like the software? Send a
+tip to Randall: 14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS
 """
 
 
