@@ -98,6 +98,9 @@ class BTC(object):
         print 'Sell: 1 BTC for %s %s' % (sjson['amount'], sjson['currency'])
         print '======================'
 
+    def buy(self):
+        pass
+
 
 def init():
     """Initialize `btc`.
@@ -149,6 +152,8 @@ def main():
         btc.transfer()
     elif arguments['rates']:
         btc.rates()
+    elif arguments['buy']:
+        btc.buy()
 
 
 if __name__ == '__main__':
