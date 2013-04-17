@@ -50,18 +50,25 @@ class BTC(object):
             print 'No API key found! Please run `btc init` to initialize.'
             exit(1)
 
-    def logs(self):
-        """List a user's recent Coinbase transactions."""
-        resp = get('%s/transactions?api_key=%s' % (API_URI,
-            self.get_api_key()))
+    def make_get_request(self, path):
+        """Make the specified API request, and return the JSON data, or quit
+        with an error.
+        """
+        resp = get('%s/%s?api_key=%s' % (API_URI, path, self.get_api_key()))
         if resp.status_code != 200:
             print 'Error connecting to Coinbase API. Please try again.'
             print 'If the problem persists, please check your API key.'
-            return
+            exit(1)
+
+        return resp.json()
+
+    def logs(self):
+        """List a user's recent Coinbase transactions."""
+        json = self.make_get_request('transactions')
 
         print 'Transaction Logs'
         print '================'
-        print dumps(resp.json()['transactions'], sort_keys=True, indent=2,
+        print dumps(json['transactions'], sort_keys=True, indent=2,
                 separators=(',', ': '))
         print '================'
 
@@ -81,7 +88,15 @@ class BTC(object):
         pass
 
     def view(self):
-        pass
+        """List current exchange rates."""
+        bjson = self.make_get_request('prices/buy')
+        sjson = self.make_get_request('prices/sell')
+
+        print 'Bitcoin Exchange Rates'
+        print '======================'
+        print 'Buy: 1 BTC for %s %s' % (bjson['amount'], bjson['currency'])
+        print 'Sell: 1 BTC for %s %s' % (sjson['amount'], sjson['currency'])
+        print '======================'
 
 
 def init():
