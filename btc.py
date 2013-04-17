@@ -9,7 +9,8 @@
 """
 
 
-from os.path import expanduser
+from json import dumps
+from os.path import exists, expanduser
 
 from requests import get
 
