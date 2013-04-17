@@ -6,6 +6,18 @@ terminal!  (Powered by [Coinbase](https://coinbase.com/).)
 
 ## Prerequisites
 
+Before using `btc`, there are a few things you should already have setup.
+
+1. You should be familiar with bitcoin...  *Duh!*
+2. You should have a coinbase account.  If you don't, you can create one here:
+   https://coinbase.com/
+3. You should add a valid US bank account to your coinbase account if you plan
+   on purchasing or selling bitcoin.  If you only plan on using `btc` to
+   transfer bitcoin from one account to another, this is not necessary.
+4. You should create a coinbase API key.  This is what you will need below so
+   that the `btc` program knows how to access your account.  You can do this
+   here: https://coinbase.com/account/integrations
+
 
 ## Installation
 
