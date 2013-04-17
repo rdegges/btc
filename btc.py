@@ -23,6 +23,7 @@ Usage:
 from json import dumps
 from os.path import exists, expanduser
 
+from docopt import docopt
 from requests import get
 
 
