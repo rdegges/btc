@@ -34,7 +34,7 @@ from requests import get
 
 
 ##### GLOBALS
-API_KEY = None
+API_URI = 'https://coinbase.com/api/v1'
 CONFIG_FILE = expanduser('~/.btc')
 
 
