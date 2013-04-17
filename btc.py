@@ -27,6 +27,7 @@ Written by Randall Degges <http://www.rdegges.com/>.
 
 from json import dumps
 from os.path import exists, expanduser
+from sys import exit
 
 from docopt import docopt
 from requests import get
