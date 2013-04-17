@@ -53,4 +53,15 @@ def init():
                 'correct, and try again.\n'
 
 
-init()
+def logs():
+    """List a user's recent Coinbase transactions."""
+    resp = get('https://coinbase.com/api/v1/transactions?api_key=%s' % API_KEY)
+    if resp.status_code != 200:
+        print 'Error connecting to Coinbase API. Please try again.'
+        return
+
+    print 'Transaction Logs'
+    print '================'
+    print dumps(resp.json()['transactions'], sort_keys=True, indent=2,
+            separators=(',', ': '))
+    print '================'
