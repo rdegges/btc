@@ -38,6 +38,32 @@ API_URI = 'https://coinbase.com/api/v1'
 CONFIG_FILE = expanduser('~/.btc')
 
 
+class BTC(object):
+
+    def get_api_key(self):
+        """Get the API key, or quit with an error."""
+        if exists(CONFIG_FILE):
+            return open(CONFIG_FILE).read()
+        else:
+            print 'No API key found! Please run `btc init` to initialize.'
+            exit(1)
+
+    def logs(self):
+        """List a user's recent Coinbase transactions."""
+        resp = get('%s/transactions?api_key=%s' % (API_URI,
+            self.get_api_key()))
+        if resp.status_code != 200:
+            print 'Error connecting to Coinbase API. Please try again.'
+            print 'If the problem persists, please check your API key.'
+            return
+
+        print 'Transaction Logs'
+        print '================'
+        print dumps(resp.json()['transactions'], sort_keys=True, indent=2,
+                separators=(',', ': '))
+        print '================'
+
+
 def init():
     """Initialize `btc`.
 
@@ -71,15 +97,3 @@ def init():
                 'correct, and try again.\n'
 
 
-def logs():
-    """List a user's recent Coinbase transactions."""
-    resp = get('https://coinbase.com/api/v1/transactions?api_key=%s' % API_KEY)
-    if resp.status_code != 200:
-        print 'Error connecting to Coinbase API. Please try again.'
-        return
-
-    print 'Transaction Logs'
-    print '================'
-    print dumps(resp.json()['transactions'], sort_keys=True, indent=2,
-            separators=(',', ': '))
-    print '================'
