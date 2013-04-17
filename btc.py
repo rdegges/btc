@@ -1,11 +1,22 @@
+#!/usr/bin/env python
 """
-    btc
-    ~~~
+btc
+~~~
 
-    Buy, sell, and transfer bitcoin instantly at your terminal! (Powered by
-    Coinbase: https://coinbase.com/).
+Buy, sell, and transfer bitcoin instantly at your terminal! (Powered by
+Coinbase: https://coinbase.com/).
 
-    For help, run `btc` with no parameters.
+Usage:
+  btc init                      Initialize btc with your Coinbase API key.
+  btc test                      Test your Coinbase API key.
+  btc logs                      View your recent transaction logs.
+  btc view                      View current bitcoin exchange rates.
+  btc buy <btc>                 Buy bitcoin using your bank account on file with Coinbase.
+  btc sell <btc>                Sell bitcoin.
+  btc transfer <btc> <address>  Transfer bitcoin to another person.
+  btc [-h | --help]             Show this screen.
+  btc [-v | --version]          Show version.
+
 """
 
 
