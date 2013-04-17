@@ -60,6 +60,18 @@ class BTC(object):
                 separators=(',', ': '))
         print '================'
 
+    def sell(self):
+        pass
+
+    def test(self):
+        pass
+
+    def transfer(self):
+        pass
+
+    def view(self):
+        pass
+
 
 def init():
     """Initialize `btc`.
