@@ -15,6 +15,11 @@ from os.path import exists, expanduser
 from requests import get
 
 
+##### GLOBALS
+API_KEY = None
+CONFIG_FILE = expanduser('~/.btc')
+
+
 def init():
     """Initialize `btc`.
 
