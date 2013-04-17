@@ -25,3 +25,15 @@ $ btc transfer 1 <someaddress>
 All of the commands above (except the `logs` and `view` commands) require you to
 manually accept (by pressing `y` or `n` on your keyboard), for added security
 (so you don't accidentally spend tons of money, or something).
+
+
+## Like This?
+
+If you've enjoyed using `btc`, feel free to send me some bitcoin!  My address
+is:
+
+**14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS**
+
+<3
+
+-Randall
