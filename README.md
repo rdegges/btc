@@ -4,6 +4,39 @@ Buy, sell, and transfer [bitcoin](http://bitcoin.org/en/) instantly at your
 terminal!  (Powered by [Coinbase](https://coinbase.com/).)
 
 
+## Why Coinbase?
+
+[Coinbase](https://coinbase.com/) is a great bitcoin exchange because:
+
+- They allow you to immediately add and verify a US bank account (this allows
+  you to easily purchase and sell bitcoin without the hassle that other
+  providers make you go through).
+- They have a clean, simple website that makes using bitcoin a nice experience.
+- They are backed by an incredible team of investors (see:
+  https://coinbase.com/about).
+
+**NOTE**: I am in no way affiliated with Coinbase.  I don't know anyone that
+works there, have no relationship with the investing companies -- nothing.
+
+
+## Why btc?
+
+I spend a lot of my time at the terminal, and I greatly prefer using the command
+line to buy, sell, and transfer bitcoin as it's a lot quicker than opening web
+pages, navigating around, etc.
+
+Using [Coinbase's API](https://coinbase.com/api/doc) was a logical next step for
+me, as I could do everything I'd normally do through coinbase through a simple
+CLI tool, `btc`.
+
+Why should you use `btc`?  You should use `btc` if:
+
+- You frequently buy / sell / transfer bitcoin.
+- You use Coinbase.
+- You prefer to use open source software to ensure your bitcoin are safe (anyone
+  can view this project code).
+
+
 ## Prerequisites
 
 Before using `btc`, there are a few things you should already have setup.
