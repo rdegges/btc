@@ -66,10 +66,10 @@ https://coinbase.com/account/integrations (make sure your API key is
 *enabled*).
 
 ```bash
-$ btc start
+$ btc init
 ```
 
-The `start` command will ask you for input, and walk you through the making sure
+The `init` command will ask you for input, and walk you through the making sure
 that `btc` is working properly.  Your API key will be stored in a file named
 `~/.btc` in your home directory.  To remove your API key from `btc`, simply
 delete that file.
@@ -80,7 +80,7 @@ delete that file.
 If you simply run `btc` on the command line, you'll get a list of help.
 
 ```bash
-$ btc start     # activate btc by supplying your coinbase API key
+$ btc init      # activate btc by supplying your coinbase API key
 $ btc logs      # list your coinbase transactions
 $ btc view      # list current buy / sell rates
 $ btc buy 1     # purchase 1 bitcoin using your bank account on file
