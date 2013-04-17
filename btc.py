@@ -94,3 +94,24 @@ def init():
                 'correct, and try again.\n'
 
 
+def main():
+    """Handle user input, and do stuff accordingly."""
+    arguments = docopt(__doc__, version='btc 0.1')
+
+    btc = BTC()
+    if arguments['init']:
+        init()
+    elif arguments['logs']:
+        btc.logs()
+    elif arguments['sell']:
+        pass
+    elif arguments['test']:
+        pass
+    elif arguments['transfer']:
+        pass
+    elif arguments['view']:
+        pass
+
+
+if __name__ == '__main__':
+    main()
