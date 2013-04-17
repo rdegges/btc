@@ -7,15 +7,19 @@ Buy, sell, and transfer bitcoin instantly at your terminal! (Powered by
 Coinbase: https://coinbase.com/).
 
 Usage:
-  btc init                      Initialize btc.
-  btc test                      Test your API key.
-  btc logs                      View recent transactions.
-  btc view                      View current bitcoin exchange rates.
-  btc buy <btc>                 Buy bitcoin.
-  btc sell <btc>                Sell bitcoin.
-  btc transfer <btc> <address>  Transfer bitcoin.
-  btc (-h | --help)             Show this screen.
-  btc --version                 Show version.
+  btc init
+  btc test
+  btc logs
+  btc view
+  btc buy <btc>
+  btc sell <btc>
+  btc transfer <btc> <address>
+  btc (-h | --help)
+  btc --version
+
+Options:
+  -h --help  Show this screen.
+  --version  Show version.
 
 Written by Randall Degges <http://www.rdegges.com/>. Like the software? Send a
 tip to Randall: 14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS
@@ -33,6 +37,7 @@ from requests import get
 ##### GLOBALS
 API_URI = 'https://coinbase.com/api/v1'
 CONFIG_FILE = expanduser('~/.btc')
+VERSION = 'btc 0.1'
 
 
 class BTC(object):
@@ -64,7 +69,13 @@ class BTC(object):
         pass
 
     def test(self):
-        pass
+        """Test the API key to make sure it's working."""
+        resp = get('%s/users?api_key=%s' % (API_URI, self.get_api_key()))
+        if resp.status_code == 200:
+            print 'Your API key is working!'
+        else:
+            print 'Your API is NOT working. Please check your API key.'
+            print 'To update your API key, re-run `btc init`.'
 
     def transfer(self):
         pass
@@ -108,7 +119,7 @@ def init():
 
 def main():
     """Handle user input, and do stuff accordingly."""
-    arguments = docopt(__doc__, version='btc 0.1')
+    arguments = docopt(__doc__, version=VERSION)
 
     btc = BTC()
     if arguments['init']:
