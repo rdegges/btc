@@ -39,6 +39,7 @@ def init():
             f.close()
 
             print '\nSuccessfully initialized `btc`!'
+            print 'Your API key is stored here:', expanduser('~/.btc'), '\n'
             print 'Run `btc` for usage information.'
             finished = True
         else:
