@@ -51,11 +51,18 @@ class BTC(object):
             print 'No API key found! Please run `btc init` to initialize.'
             exit(1)
 
-    def make_get_request(self, path):
+    def make_request(self, path, data={}, method='GET'):
         """Make the specified API request, and return the JSON data, or quit
         with an error.
         """
-        resp = get('%s/%s?api_key=%s' % (API_URI, path, self.get_api_key()))
+        if method.lower() == 'post':
+            resp = post('%s/%s?api_key=%s' % (API_URI, path,
+                self.get_api_key()), data=dumps(data), headers={'Content-Type':
+                'application/json'})
+        else:
+            resp = get('%s/%s?api_key=%s' % (API_URI, path,
+                self.get_api_key()))
+
         if resp.status_code != 200:
             print 'Error connecting to Coinbase API. Please try again.'
             print 'If the problem persists, please check your API key.'
@@ -65,7 +72,7 @@ class BTC(object):
 
     def logs(self):
         """List a user's recent Coinbase transactions."""
-        json = self.make_get_request('transactions')
+        json = self.make_request('transactions')
 
         print 'Transaction Logs'
         print '================'
@@ -90,8 +97,8 @@ class BTC(object):
 
     def rates(self):
         """List current exchange rates."""
-        bjson = self.make_get_request('prices/buy')
-        sjson = self.make_get_request('prices/sell')
+        bjson = self.make_request('prices/buy')
+        sjson = self.make_request('prices/sell')
 
         print 'Bitcoin Exchange Rates'
         print '======================'
