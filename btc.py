@@ -116,13 +116,13 @@ def main():
     elif arguments['logs']:
         btc.logs()
     elif arguments['sell']:
-        pass
+        btc.sell()
     elif arguments['test']:
-        pass
+        btc.test()
     elif arguments['transfer']:
-        pass
+        btc.transfer()
     elif arguments['view']:
-        pass
+        btc.view()
 
 
 if __name__ == '__main__':
