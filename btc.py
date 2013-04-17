@@ -29,9 +29,10 @@ tip to Randall: 14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS
 from json import dumps
 from os.path import exists, expanduser
 from sys import exit
+from textwrap import wrap
 
 from docopt import docopt
-from requests import get
+from requests import get, post
 
 
 ##### GLOBALS
