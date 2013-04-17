@@ -102,7 +102,7 @@ def init():
             continue
 
         # Validate the API key.
-        resp = get('https://coinbase.com/api/v1/users?api_key=%s' % api_key)
+        resp = get('%s/users?api_key=%s' % (API_URI, api_key))
         if resp.status_code == 200:
             f = open(CONFIG_FILE, 'wb')
             f.write(api_key)
