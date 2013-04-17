@@ -7,19 +7,15 @@ Buy, sell, and transfer bitcoin instantly at your terminal! (Powered by
 Coinbase: https://coinbase.com/).
 
 Usage:
-  btc init
-  btc test
-  btc logs
-  btc view
-  btc buy <btc>
-  btc sell <btc>
-  btc transfer <btc> <address>
-  btc (-h | --help)
-  btc --version
-
-Options:
-  -h --help  Show this screen.
-  -version   Show version.
+  btc init                      Initialize btc.
+  btc test                      Test your API key.
+  btc logs                      View recent transactions.
+  btc view                      View current bitcoin exchange rates.
+  btc buy <btc>                 Buy bitcoin.
+  btc sell <btc>                Sell bitcoin.
+  btc transfer <btc> <address>  Transfer bitcoin.
+  btc (-h | --help)             Show this screen.
+  btc --version                 Show version.
 
 Written by Randall Degges <http://www.rdegges.com/>.
 """
