@@ -41,7 +41,7 @@ from requests import get, post
 ##### GLOBALS
 API_URI = 'https://coinbase.com/api/v1'
 CONFIG_FILE = expanduser('~/.btc')
-VERSION = 'btc 0.1'
+VERSION = 'btc 0.2'
 
 
 class BTC(object):
