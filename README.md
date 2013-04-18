@@ -100,6 +100,17 @@ doing anything for added security (so you don't accidentally spend tons of
 money, or something).
 
 
+## Changelog
+
+v0.2: 04-17-2013
+
+    - Fixing some small documentation issues.
+
+v0.1: 04-17-2013
+
+    - First release!
+
+
 ## Like This?
 
 If you've enjoyed using `btc`, feel free to send me some bitcoin!  My address
