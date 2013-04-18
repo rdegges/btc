@@ -11,12 +11,12 @@ Usage:
   btc address
   btc balance
   btc request <btc> <email> [<note>]
+  btc send <btc> (<email> | <address>) [<note>]
   btc test
   btc logs
   btc rates
   btc buy <btc>
   btc sell <btc>
-  btc transfer <btc> <address>
   btc (-h | --help)
   btc --version
 
@@ -109,6 +109,30 @@ class BTC(object):
 
         print 'Request successful!'
 
+    def send(self, amount, address, note):
+        """Send bitcoin payment by email address or bitcoin address."""
+        json = self.make_request('transactions/send_money', data={
+            'transaction': {
+                'to': address,
+                'amount': amount,
+                'notes': note
+            }
+        }, method='POST')
+
+        if not json['success']:
+            print 'There Were Error(s) Sending Bitcoin'
+            print '==================================='
+            for error in json['errors']:
+                print '- %s' % '\n  '.join(wrap(error, 77))
+            print '==================================='
+            return
+
+        print 'Sending Bitcoin Successful'
+        print '=========================='
+        print dumps(json['transaction'], sort_keys=True, indent=2,
+                separators=(',', ': '))
+        print '=========================='
+
     def logs(self):
         """List a user's recent Coinbase transactions."""
         json = self.make_request('transactions')
@@ -153,9 +177,6 @@ class BTC(object):
         else:
             print 'Your API is NOT working. Please check your API key.'
             print 'To update your API key, re-run `btc init`.'
-
-    def transfer(self):
-        pass
 
     def rates(self):
         """List current exchange rates."""
@@ -243,14 +264,16 @@ def main():
     elif arguments['request']:
         btc.request(float(arguments['<btc>']), arguments['<email>'],
                 arguments['<note>'])
+    elif arguments['send']:
+        address = (arguments['<email>'] if arguments['<email>'] else
+                arguments['<address>'])
+        btc.send(float(arguments['<btc>']), address, arguments['<note>'])
     elif arguments['logs']:
         btc.logs()
     elif arguments['sell']:
         btc.sell(float(arguments['<btc>']))
     elif arguments['test']:
         btc.test()
-    elif arguments['transfer']:
-        btc.transfer()
     elif arguments['rates']:
         btc.rates()
     elif arguments['buy']:
