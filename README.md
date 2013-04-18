@@ -81,17 +81,23 @@ If you simply run `btc` on the command line, you'll get a list of help.
 
 ```bash
 $ btc init      # activate btc by supplying your coinbase API key
-$ btc logs      # list your coinbase transactions
-$ btc view      # list current buy / sell rates
-$ btc buy 1     # purchase 1 bitcoin using your bank account on file
-$ btc sell 1    # sell 1 bitcoin
-$ btc transfer 1 <someaddress>
-                # transfer 1 bitcoin to the specified address
+$ btc address   # list your active bitcoin address for receiving money
+$ btc balance   # list your account balance
+$ btc request <btc> <email> [<note>]
+                # send a payment request to the specified email address
+$ btc send <btc> (<email> | <address>) [<note>]
+                # send bitcoin to a person by email address or bitcoin address
+$ btc test      # test your API key
+$ btc logs      # display a list of recent transaction logs
+$ btc rates     # show current exchange rates
+$ btc buy 1.5   # purchase 1.5 bitcoin using your bank account on file
+$ btc sell 1.5  # sell 1.5 bitcoin
+$ btc -h        # display help information
 ```
 
-All of the commands above (except the `logs` and `view` commands) require you
-to manually accept (by pressing `y` or `n` on your keyboard), for added
-security (so you don't accidentally spend tons of money, or something).
+All commands that have side effects will prompt you for confirmation before
+doing anything for added security (so you don't accidentally spend tons of
+money, or something).
 
 
 ## Like This?
