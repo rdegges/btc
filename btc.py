@@ -8,6 +8,7 @@ Coinbase: https://coinbase.com/).
 
 Usage:
   btc init
+  btc balance
   btc test
   btc logs
   btc rates
@@ -72,6 +73,13 @@ class BTC(object):
             exit(1)
 
         return resp.json()
+
+    def balance(self):
+        """Return the amount of bitcoin in this user's account."""
+        json = self.make_request('account/balance')
+
+        print 'You have a total of %s %s in your account.' % (json['amount'],
+                json['currency'])
 
     def logs(self):
         """List a user's recent Coinbase transactions."""
@@ -200,6 +208,8 @@ def main():
     btc = BTC()
     if arguments['init']:
         init()
+    if arguments['balance']:
+        btc.balance()
     elif arguments['logs']:
         btc.logs()
     elif arguments['sell']:
