@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>btc by rdegges</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>btc</h1>
+        <h2>Buy, sell, and transfer bitcoin instantly in your terminal!</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/rdegges/btc/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/rdegges/btc/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/rdegges/btc" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>btc</h1>
+
+<p>Buy, sell, and transfer <a href="http://bitcoin.org/en/">bitcoin</a> instantly in your
+terminal!  (Powered by <a href="https://coinbase.com/">Coinbase</a>.)</p>
+
+<h2>Why Coinbase?</h2>
+
+<p><a href="https://coinbase.com/">Coinbase</a> is a great bitcoin exchange because:</p>
+
+<ul>
+<li>They allow you to immediately add and verify a US bank account (this allows
+you to easily purchase and sell bitcoin without the hassle that other
+providers make you go through).</li>
+<li>They have a clean, simple website that makes using bitcoin a nice experience.</li>
+<li>They are backed by an incredible team of investors (see:
+<a href="https://coinbase.com/about">https://coinbase.com/about</a>).</li>
+</ul><p><strong>NOTE</strong>: I am in no way affiliated with Coinbase.  I don't know anyone that
+works there, have no relationship with the investing companies -- nothing.</p>
+
+<h2>Why btc?</h2>
+
+<p>I spend a lot of my time at the terminal, and I greatly prefer using the command
+line to buy, sell, and transfer bitcoin as it's a lot quicker than opening web
+pages, navigating around, etc.</p>
+
+<p>Using <a href="https://coinbase.com/api/doc">Coinbase's API</a> was a logical next step for
+me, as I could do everything I'd normally do through coinbase through a simple
+CLI tool, <code>btc</code>.</p>
+
+<p>Why should you use <code>btc</code>?  You should use <code>btc</code> if:</p>
+
+<ul>
+<li>You frequently buy / sell / transfer bitcoin.</li>
+<li>You use Coinbase.</li>
+<li>You prefer to use open source software to ensure your bitcoin are safe (anyone
+can view this project code).</li>
+</ul><h2>Prerequisites</h2>
+
+<p>Before using <code>btc</code>, there are a few things you should already have setup.</p>
+
+<ol>
+<li>You should be familiar with bitcoin...  <em>Duh!</em>
+</li>
+<li>You should have a coinbase account.  If you don't, you can create one here:
+<a href="https://coinbase.com/">https://coinbase.com/</a>
+</li>
+<li>You should add a valid US bank account to your coinbase account if you plan
+on purchasing or selling bitcoin.  If you only plan on using <code>btc</code> to
+transfer bitcoin from one account to another, this is not necessary.</li>
+<li>You should create a coinbase API key.  This is what you will need below so
+that the <code>btc</code> program knows how to access your account.  You can do this
+here: <a href="https://coinbase.com/account/integrations">https://coinbase.com/account/integrations</a>
+</li>
+</ol><h2>Installation</h2>
+
+<p>You can install <code>btc</code> via <a href="http://pip.readthedocs.org/en/latest/">pip</a>:</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>sudo pip install btc
+</pre></div>
+
+<p>Once <code>btc</code> has been installed, you'll need to give it your coinbase API key so
+it knows how to make requests.  You can find your coinbase API key here:
+<a href="https://coinbase.com/account/integrations">https://coinbase.com/account/integrations</a> (make sure your API key is
+<em>enabled</em>).</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>btc init
+</pre></div>
+
+<p>The <code>init</code> command will ask you for input, and walk you through the making sure
+that <code>btc</code> is working properly.  Your API key will be stored in a file named
+<code>~/.btc</code> in your home directory.  To remove your API key from <code>btc</code>, simply
+delete that file.</p>
+
+<h2>Usage</h2>
+
+<p>If you simply run <code>btc</code> on the command line, you'll get a list of help.</p>
+
+<div class="highlight"><pre><span class="nv">$ </span>btc init      <span class="c"># activate btc by supplying your coinbase API key</span>
+<span class="nv">$ </span>btc address   <span class="c"># list your active bitcoin address for receiving money</span>
+<span class="nv">$ </span>btc balance   <span class="c"># list your account balance</span>
+<span class="nv">$ </span>btc request &lt;btc&gt; &lt;email&gt; <span class="o">[</span>&lt;note&gt;<span class="o">]</span>
+                <span class="c"># send a payment request to the specified email address</span>
+<span class="nv">$ </span>btc send &lt;btc&gt; <span class="o">(</span>&lt;email&gt; | &lt;address&gt;<span class="o">)</span> <span class="o">[</span>&lt;note&gt;<span class="o">]</span>
+                <span class="c"># send bitcoin to a person by email address or bitcoin address</span>
+<span class="nv">$ </span>btc <span class="nb">test</span>      <span class="c"># test your API key</span>
+<span class="nv">$ </span>btc logs      <span class="c"># display a list of recent transaction logs</span>
+<span class="nv">$ </span>btc rates     <span class="c"># show current exchange rates</span>
+<span class="nv">$ </span>btc buy 1.5   <span class="c"># purchase 1.5 bitcoin using your bank account on file</span>
+<span class="nv">$ </span>btc sell 1.5  <span class="c"># sell 1.5 bitcoin</span>
+<span class="nv">$ </span>btc -h        <span class="c"># display help information</span>
+</pre></div>
+
+<p>All commands that have side effects will prompt you for confirmation before
+doing anything for added security (so you don't accidentally spend tons of
+money, or something).</p>
+
+<h2>Changelog</h2>
+
+<p>v0.2: 04-17-2013</p>
+
+<pre><code>- Fixing some small documentation issues.
+</code></pre>
+
+<p>v0.1: 04-17-2013</p>
+
+<pre><code>- First release!
+</code></pre>
+
+<h2>Like This?</h2>
+
+<p>If you've enjoyed using <code>btc</code>, feel free to send me some bitcoin!  My address
+is:</p>
+
+<p><strong>14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS</strong></p>
+
+<p>&lt;3</p>
+
+<p>-Randall</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
