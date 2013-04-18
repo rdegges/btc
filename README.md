@@ -1,6 +1,6 @@
 # btc
 
-Buy, sell, and transfer [bitcoin](http://bitcoin.org/en/) instantly at your
+Buy, sell, and transfer [bitcoin](http://bitcoin.org/en/) instantly in your
 terminal!  (Powered by [Coinbase](https://coinbase.com/).)
 
 
