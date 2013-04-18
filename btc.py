@@ -10,6 +10,7 @@ Usage:
   btc init
   btc address
   btc balance
+  btc request <btc> <email> [<note>]
   btc test
   btc logs
   btc rates
@@ -87,6 +88,26 @@ class BTC(object):
 
         print 'You have a total of %s %s in your account.' % (json['amount'],
                 json['currency'])
+
+    def request(self, amount, email, note):
+        """Request bitcoin payment by email address."""
+        json = self.make_request('transactions/request_money', data={
+            'transaction': {
+                'from': email,
+                'amount': amount,
+                'notes': note
+            }
+        }, method='POST')
+
+        if not json['success']:
+            print 'There Were Error(s) Requesting Bitcoin'
+            print '======================================'
+            for error in json['errors']:
+                print '- %s' % '\n  '.join(wrap(error, 77))
+            print '======================================'
+            return
+
+        print 'Request successful!'
 
     def logs(self):
         """List a user's recent Coinbase transactions."""
@@ -215,10 +236,13 @@ def main():
     btc = BTC()
     if arguments['init']:
         init()
-    if arguments['address']:
+    elif arguments['address']:
         btc.address()
-    if arguments['balance']:
+    elif arguments['balance']:
         btc.balance()
+    elif arguments['request']:
+        btc.request(float(arguments['<btc>']), arguments['<email>'],
+                arguments['<note>'])
     elif arguments['logs']:
         btc.logs()
     elif arguments['sell']:
