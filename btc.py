@@ -8,6 +8,7 @@ Coinbase: https://coinbase.com/).
 
 Usage:
   btc init
+  btc address
   btc balance
   btc test
   btc logs
@@ -73,6 +74,12 @@ class BTC(object):
             exit(1)
 
         return resp.json()
+
+    def address(self):
+        """Return the user's current bitcoin receive address."""
+        json = self.make_request('account/receive_address')
+
+        print 'Your bitcoin receive address is:', json['address']
 
     def balance(self):
         """Return the amount of bitcoin in this user's account."""
@@ -208,6 +215,8 @@ def main():
     btc = BTC()
     if arguments['init']:
         init()
+    if arguments['address']:
+        btc.address()
     if arguments['balance']:
         btc.balance()
     elif arguments['logs']:
