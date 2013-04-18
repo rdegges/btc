@@ -7,7 +7,7 @@ setup(
 
     # Basic package information:
     name = 'btc',
-    version = '0.2',
+    version = '0.3',
     scripts = ('btc', ),
 
     # Packaging options:

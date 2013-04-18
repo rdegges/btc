@@ -30,6 +30,7 @@ tip to Randall: 14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS
 
 
 from json import dumps
+from os import chmod
 from os.path import exists, expanduser
 from sys import exit
 from textwrap import wrap
@@ -41,7 +42,7 @@ from requests import get, post
 ##### GLOBALS
 API_URI = 'https://coinbase.com/api/v1'
 CONFIG_FILE = expanduser('~/.btc')
-VERSION = 'btc 0.2'
+VERSION = 'btc 0.3'
 
 
 class BTC(object):
@@ -240,6 +241,7 @@ def init():
             f = open(CONFIG_FILE, 'wb')
             f.write(api_key)
             f.close()
+            chmod(CONFIG_FILE, 0600)
 
             print '\nSuccessfully initialized `btc`!'
             print 'Your API key is stored here:', CONFIG_FILE, '\n'

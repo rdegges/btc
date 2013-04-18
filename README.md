@@ -102,6 +102,10 @@ money, or something).
 
 ## Changelog
 
+v0.3: 04-18-2013
+
+    - Setting ~/.btc to mode 0600 for additional security.
+
 v0.2: 04-17-2013
 
     - Fixing some small documentation issues.
