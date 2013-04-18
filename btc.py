@@ -83,8 +83,31 @@ class BTC(object):
                 separators=(',', ': '))
         print '================'
 
-    def sell(self):
-        pass
+    def sell(self, amount):
+        """Sell bitcoin."""
+        bjson = self.make_request('prices/sell', data={'qty': amount})
+
+        api_key = raw_input("Are you sure you'd like to sell %f BTC? This will give you ~%s %s (y/n) " % (amount, bjson['amount'], bjson['currency'])).strip().lower()
+        if api_key != 'y':
+            return
+
+        json = self.make_request('sells', method='POST', data={
+            'qty': amount,
+        })
+
+        if not json['success']:
+            print 'There Were Error(s) Selling Your Bitcoin'
+            print '========================================'
+            for error in json['errors']:
+                print '- %s' % '\n  '.join(wrap(error, 77))
+            print '========================================'
+            return
+
+        print 'Sell Successful'
+        print '==============='
+        print dumps(json['transfer'], sort_keys=True, indent=2,
+                separators=(',', ': '))
+        print '==============='
 
     def test(self):
         """Test the API key to make sure it's working."""
@@ -121,7 +144,6 @@ class BTC(object):
             'qty': amount,
             'agree_btc_amount_varies': True,
         })
-        print dumps(json, sort_keys=True, indent=2, separators=(',', ': '))
 
         if not json['success']:
             print 'There Were Error(s) Making Your Purchase'
@@ -174,7 +196,6 @@ def init():
 def main():
     """Handle user input, and do stuff accordingly."""
     arguments = docopt(__doc__, version=VERSION)
-    #print arguments
 
     btc = BTC()
     if arguments['init']:
@@ -182,7 +203,7 @@ def main():
     elif arguments['logs']:
         btc.logs()
     elif arguments['sell']:
-        btc.sell()
+        btc.sell(float(arguments['<btc>']))
     elif arguments['test']:
         btc.test()
     elif arguments['transfer']:
