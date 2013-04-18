@@ -55,13 +55,16 @@ class BTC(object):
         """Make the specified API request, and return the JSON data, or quit
         with an error.
         """
+        params = {
+            'api_key': self.get_api_key(),
+        }
         if method.lower() == 'post':
-            resp = post('%s/%s?api_key=%s' % (API_URI, path,
-                self.get_api_key()), data=dumps(data), headers={'Content-Type':
+            resp = post('%s/%s' % (API_URI, path), params=params,
+                data=dumps(data), headers={'Content-Type':
                 'application/json'})
         else:
-            resp = get('%s/%s?api_key=%s' % (API_URI, path,
-                self.get_api_key()))
+            params = dict(params.items() + data.items())
+            resp = get('%s/%s' % (API_URI, path), params=params)
 
         if resp.status_code != 200:
             print 'Error connecting to Coinbase API. Please try again.'
@@ -108,6 +111,12 @@ class BTC(object):
 
     def buy(self, amount):
         """Purchase bitcoin."""
+        bjson = self.make_request('prices/buy', data={'qty': amount})
+
+        api_key = raw_input("Are you sure you'd like to purchase %f BTC? This will cost ~%s %s (y/n) " % (amount, bjson['amount'], bjson['currency'])).strip().lower()
+        if api_key != 'y':
+            return
+
         json = self.make_request('buys', method='POST', data={
             'qty': amount,
             'agree_btc_amount_varies': True,
@@ -165,6 +174,7 @@ def init():
 def main():
     """Handle user input, and do stuff accordingly."""
     arguments = docopt(__doc__, version=VERSION)
+    #print arguments
 
     btc = BTC()
     if arguments['init']:
