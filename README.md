@@ -122,6 +122,8 @@ is:
 
 **14m3gaa3TvEgN7Ltc4377v3MVCPnyunuqS**
 
+Or...  You could tip me on [gittip](https://www.gittip.com/rdegges/) :)
+
 <3
 
 -Randall
